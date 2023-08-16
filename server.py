@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 import numpy as np
 # CORS
 from flask_cors import CORS
-
+import awsgi
 
 def parse_image(image):
     switches = get_switches_data_from_image(image)
@@ -73,5 +73,8 @@ def image():
 def index():
     return 'Welcome to Lock Solver API'
 
+
+def handler(event, context):
+    return awsgi.response(app, event, context)
     
 
