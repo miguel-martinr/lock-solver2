@@ -1,7 +1,7 @@
 from base64 import b64encode
 import cv2
-from lockservice import get_expected_voltage_rectangles, get_input_voltage_rectangle, get_switches_data_from_image, get_expected_voltages_from_image, get_input_voltage_from_image, get_switches_rectangles
-from switches import solve_lock
+from locksolver.lockservice import get_expected_voltage_rectangles, get_input_voltage_rectangle, get_switches_data_from_image, get_expected_voltages_from_image, get_input_voltage_from_image, get_switches_rectangles
+from locksolver.switches import solve_lock
 from flask import Flask, request, jsonify
 import numpy as np
 # CORS
@@ -52,9 +52,6 @@ def encode_image(image):
 @app.route('/image-params', methods=['POST'])
 def image():
         
-
-
-
     image = request.files['image'].read()
     image = cv2.imdecode(np.frombuffer(image, np.uint8), -1)
 
@@ -71,7 +68,10 @@ def image():
         'switches_images': [encode_image(image) for image in switches_images]        
     })
 
+# Ruta por defecto
+@app.route('/', methods=['GET'])
+def index():
+    return 'Welcome to Lock Solver API'
 
-app.run(host='192.168.1.124', port=5000, debug=True)
     
 

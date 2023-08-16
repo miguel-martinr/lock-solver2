@@ -184,32 +184,3 @@ parsed_switches = [
     for row in switches
 ]
 
-
-# initial_voltages = [
-#     120,
-#     120,
-# ]
-
-# expected_voltages = [
-#     500,
-#     80
-# ]
-
-# print(solve_lock(initial_voltages, expected_voltages, switches))
-
-
-
-
-# print(
-#     solve_lock(
-#         *parse_input(
-#             open('input0.txt', 'r').read()
-#         )
-#     )
-# )
-
-# print(
-#     parse_input(
-#             open('input0.txt', 'r').read()
-#         )
-# )

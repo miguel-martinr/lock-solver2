@@ -1,0 +1,60 @@
+name: CI/CD Pipeline Production
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  ARTIFACT_NAME: artifact_${{ github.sha }}
+
+jobs:
+
+  CD:
+    runs-on: ubuntu-latest
+    environment: pro
+
+    steps:
+      # Step 1      
+      - uses: actions/checkout@v2
+      
+      # Step 2
+      - name: Set up Python+ env
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.6
+          architecture: x64
+      
+      # Step 2.1
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+      
+      # Step 2.2
+      - name: Export requirements
+        run: |
+          poetry export  --without-hashes --format=requirements.txt > requirements.txt
+
+      # Step 3
+      - name: Install deps
+        run: pip install -r requirements.txt -t dist/lambda .
+
+      # Step 5
+      - name: Package lambda
+        run: |
+          cd dist/lambda
+          zip -x '*.pyc' -r ../$ARTIFACT_NAME.zip .          
+
+      # Step 6
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-3
+
+      # Step 7
+      - name: Deploy Lambda
+        run: aws lambda update-function-code --function-name ${{ vars.LAMBDA_NAME }} --zip-file fileb://$(readlink -f ./dist/$ARTIFACT_NAME.zip) --publish
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }} 
