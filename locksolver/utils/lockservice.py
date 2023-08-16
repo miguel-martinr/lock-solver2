@@ -1,5 +1,5 @@
 import cv2
-from locksolver.computervision import get_text_from_image_at_rectangle, imshow
+from locksolver.utils.computervision import get_text_from_image_at_rectangle, imshow
 
 
 def get_switches_rectangles():

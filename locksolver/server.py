@@ -1,7 +1,7 @@
 from base64 import b64encode
 import cv2
-from locksolver.lockservice import get_expected_voltage_rectangles, get_input_voltage_rectangle, get_switches_data_from_image, get_expected_voltages_from_image, get_input_voltage_from_image, get_switches_rectangles
-from locksolver.switches import solve_lock
+from locksolver.utils.lockservice import get_expected_voltage_rectangles, get_input_voltage_rectangle, get_switches_data_from_image, get_expected_voltages_from_image, get_input_voltage_from_image, get_switches_rectangles
+from locksolver.utils.switches import solve_lock
 from flask import Flask, request, jsonify
 import numpy as np
 # CORS
