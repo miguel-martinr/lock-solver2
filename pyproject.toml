@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Miguel Martín <miguel.martr11@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "locksolver"},
+]
 
 
 
