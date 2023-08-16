@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Bootstrap 5 -->
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <script src="./index.js" type="module"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <!-- v4 -->
+  <!-- <script src='https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js'></script> -->
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Lock solver</h1>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="col-sm-12">Entrada
+          <!-- Spinner -->
+          <div class="spinner-border d-none " role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <!-- <input type="file" name="image" id="image-input"> -->
+          <input type="file" id="input-image">
+        </div>
+
+        <div class="col-sm-12">
+          <!-- Voltaje de entrada -->
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <span><strong>Voltaje de entrada</strong></span>
+            </div>
+            <div class="col-sm-6">
+              <img id="input-voltage-img" class="img-fluid"
+                src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+            </div>
+            <div class="col-sm-6">
+              <input class="form-control" type="number" name="" id="input-voltage-ui">
+            </div>
+
+          </div>
+
+          <!-- Voltajes esperados -->
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <span><strong>Voltajes esperados</strong></span>
+            </div>
+            <div class="col-sm-6">
+              <img id="expected-voltage-red-img" class="img-fluid"
+                src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+            </div>
+            <div class="col-sm-6">
+              <input class="form-control" type="number" id="expected-voltage-red-ui">
+            </div>
+            <div class="col-sm-6">
+              <img id="expected-voltage-blue-img" class="img-fluid"
+                src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+            </div>
+            <div class="col-sm-6">
+              <input class="form-control" type="number" id="expected-voltage-blue-ui">
+            </div>
+          </div>
+
+          <!-- Switches -->
+          <div class="row" id="switches-ui">
+            <div class="col-sm-12 text-center">
+              <span><strong>Switches</strong></span>
+            </div>
+
+            <div class="col-sm-12">
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-0-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-0">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-1-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-1">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-2-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-2">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-3-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-3">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-4-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-4">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-5-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-5">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-6-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-6">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-7-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-7">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-8-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-8">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-9-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-9">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-10-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-10">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-11-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-11">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-12-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-12">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-13-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-13">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-14-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-14">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="col-sm-12">
+                    <img id="switch-input-15-img" class="img-fluid"
+                      src="https://static.wikia.nocookie.net/bigmouth/images/f/f7/Big_Mouth_HD_CLEAR_Character_ART_Maurice_the_Hormone_Monster.png">
+                  </div>
+                  <div class="col-sm-12">
+                    <input class="form-control" type="text" id="switch-input-15">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-12 mt-5 mb-5">
+          <button type="submit" class="btn btn-primary" id="solve-btn">Resolver</button>
+
+        </div>
+
+
+
+      </div>
+
+      <div class="col-sm-4">
+        <div class="col-sm-12 text-start">
+          <span><strong>Voltaje de entrada:</strong></span>
+          &nbsp;
+          <span id="input-voltage">
+
+          </span>
+        </div>
+        <div class="col-sm-12 text-start">
+          <span><strong>Voltajes esperados:</strong></span>
+          <span id="output-voltage-red" style="color: red">
+
+          </span>
+          <!-- Espacio  -->
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span id="output-voltage-blue" style="color: blue">
+
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="col-sm-12">Salida</div>
+        <div class="col-sm-12" id="solver-output">
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-0">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-1">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-2">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-3">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-4">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-5">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-6">
+          </div>
+          <div class="form-check form-switch form-switch-xl">
+            <input class="form-check-input" type="checkbox" role="switch" id="switch-7">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+</body>
+
+</html>
